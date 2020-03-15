@@ -1,0 +1,43 @@
+<div class="card-container">
+  <mat-card class="login-card">
+
+    <mat-card-header class="input-box">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]='loginForm' autocomplete="off" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="input-box">
+          <input matInput placeholder="Usernamne" formControlName="usernamne" [errorStateMatcher]="matcher">
+
+          <mat-error *ngIf="loginForm.controls.usernamne.hasError('required')">
+            User Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-box">
+          <input matInput placeholder="Password" formControlName="password" [errorStateMatcher]="matcher"
+            [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error
+            *ngIf="loginForm.controls.password.hasError('minlength') && !loginForm.controls.password.hasError('required')">
+            Password must be <strong>8 characters</strong>
+          </mat-error>
+          <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-card-actions>
+          <button class="login-button"  mat-raised-button >Login</button>
+          
+          <!-- <button class="login-button"  mat-raised-button (click)=onLogin()>Login</button> -->
+        </mat-card-actions>
+
+      </form>
+    </mat-card-content>
+
+  </mat-card>
+</div>
