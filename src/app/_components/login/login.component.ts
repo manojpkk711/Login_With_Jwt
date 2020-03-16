@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
+  
     if (this.loginForm.invalid) {
         return;
     }
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this._authService.login(userData.username, userData.password);
     this.router.navigate(['/home']);
 
-    // display form values on success
+   
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value, null, 4));
 }
 
